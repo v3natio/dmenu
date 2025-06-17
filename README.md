@@ -12,7 +12,7 @@ The upstream development for `dmenu` can be found [here](https://git.suckless.or
 - [center](https://tools.suckless.org/dmenu/patches/center/)
 - [highlight](https://tools.suckless.org/dmenu/patches/highlight/)
 - [password](https://tools.suckless.org/dmenu/patches/password/)
-- [xresources](https://tools.suckless.org/dmenu/patches/xresources/)
+- [xresources-alt](https://tools.suckless.org/dmenu/patches/xresources-alt/)
 
 # Install
 

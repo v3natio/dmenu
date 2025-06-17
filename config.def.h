@@ -1,24 +1,36 @@
 /* See LICENSE file for copyright and license details. */
 /* Default settings; can be overriden by command line. */
 
-static int topbar = 1;                        /* -b  option; if 0, dmenu appears at bottom */
-static int centered = 1;                      /* -c option; centers dmenu on screen */
-static int min_width = 500;                   /* minimum width when centered */
-static const float menu_height_ratio = 4.0f;  /* This is the ratio used in the original calculation */
-static const unsigned int alpha = 0xff;       /* Amount of opacity. 0xff is opaque */
+static int topbar = 1; // -b  option; if 0, dmenu appears at bottom
+static int centered = 1; // -c option; centers dmenu on screen
+static int min_width = 500; // minimum width when centered
+static const float menu_height_ratio = 4.0f; // ratio used in the original calculation
+static const unsigned int alpha = 0xff; // opacity, 0xff is opaque
 /* -fn option overrides fonts[0]; default X11 font or font set */
+static char font[] = "monospace:size=10";
 static const char *fonts[] = {
-	"monospace:size=10"
+  font,
+	"monospace:size=10",
 };
-static const char *prompt      = NULL;      /* -p  option; prompt to the left of input field */
-static const char *colors[SchemeLast][2] = {
-	/*     fg         bg       */
-	[SchemeNorm] = { "#bbbbbb", "#222222" },
-	[SchemeSel] = { "#eeeeee", "#005577" },
-	[SchemeSelHighlight] = { "#ffc978", "#005577" },
-	[SchemeNormHighlight] = { "#ffc978", "#222222" },
-	[SchemeOut] = { "#000000", "#00ffff" },
-	[SchemeOutHighlight] = { "#ffc978", "#00ffff" },
+static char *prompt = NULL; // -p  option; prompt to the left of input field
+
+static char normfgcolor[] = "#bbbbbb";
+static char normbgcolor[] = "#222222";
+static char selfgcolor[] = "#eeeeee";
+static char selbgcolor[] = "#005577";
+static char normhlcolor[] = "#fabd2f";
+static char selhlcolor[] = "#fabd2f";
+static char outfgcolor[] = "#000000";
+static char outbgcolor[] = "#00ffff";
+static char outhlcolor[] = "#ffc978";
+static char *colors[SchemeLast][2] = {
+  /* foreground, background */
+  [SchemeNorm] = { normfgcolor, normbgcolor },
+  [SchemeSel] = { selfgcolor, selbgcolor },
+  [SchemeNormHighlight] = { normhlcolor, normbgcolor },
+  [SchemeSelHighlight] = { selhlcolor, selbgcolor },
+  [SchemeOut] = { outfgcolor, outbgcolor },
+  [SchemeOutHighlight] = { outhlcolor, outbgcolor },
 };
 
 static const unsigned int alphas[SchemeLast][2] = {
@@ -30,7 +42,22 @@ static const unsigned int alphas[SchemeLast][2] = {
 static unsigned int lines      = 0;
 
 /*
- * Characters not considered part of a word while deleting words
- * for example: " /?\"&[]"
- */
+* Characters not considered part of a word while deleting words
+* for example: " /?\"&[]"
+*/
 static const char worddelimiters[] = " ";
+
+/* Xresources preferences to load at startup */
+ResourcePref resources[] = {
+  { "font", STRING, &font },
+  { "prompt", STRING, &prompt },
+  { "normfgcolor", STRING, &normfgcolor },
+  { "normbgcolor", STRING, &normbgcolor },
+  { "selfgcolor", STRING, &selfgcolor },
+  { "selbgcolor", STRING, &selbgcolor },
+  { "normhlcolor", STRING, &normhlcolor },
+  { "selhlcolor", STRING, &selhlcolor },
+  { "outfgcolor", STRING, &outfgcolor },
+  { "outbgcolor", STRING, &outbgcolor },
+  { "outhlcolor", STRING, &outhlcolor },
+};
