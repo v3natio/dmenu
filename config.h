@@ -7,10 +7,10 @@ static int min_width = 500; // minimum width when centered
 static const float menu_height_ratio = 4.0f; // ratio used in the original calculation
 static const unsigned int alpha = 0xff; // opacity, 0xff is opaque
 /* -fn option overrides fonts[0]; default X11 font or font set */
-static char font[] = "JetbrainsMono Nerd Font:size=13:antialias=true:autohint=true";
+static char font[] = "JetbrainsMono Nerd Font:size=15:antialias=true:autohint=true";
 static const char *fonts[] = {
   font,
-	"JetbrainsMono Nerd Font:size=13:antialias=true:autohint=true",
+	"JetbrainsMono Nerd Font:size=15:antialias=true:autohint=true",
 };
 static char *prompt = NULL; // -p  option; prompt to the left of input field
 
