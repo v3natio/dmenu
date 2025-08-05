@@ -23,6 +23,8 @@ static char selhlcolor[] = "#fabd2f";
 static char outfgcolor[] = "#000000";
 static char outbgcolor[] = "#00ffff";
 static char outhlcolor[] = "#ffc978";
+static char curbgcolor[] = "#00ffff";
+static char curhlcolor[] = "#ffc978";
 static char *colors[SchemeLast][2] = {
   /* foreground, background */
   [SchemeNorm] = { normfgcolor, normbgcolor },
@@ -31,6 +33,7 @@ static char *colors[SchemeLast][2] = {
   [SchemeSelHighlight] = { selhlcolor, selbgcolor },
   [SchemeOut] = { outfgcolor, outbgcolor },
   [SchemeOutHighlight] = { outhlcolor, outbgcolor },
+  [SchemeCursor] = { curhlcolor, curbgcolor},
 };
 
 static const unsigned int alphas[SchemeLast][2] = {
@@ -47,6 +50,22 @@ static unsigned int lines      = 0;
 */
 static const char worddelimiters[] = " ";
 
+
+/*
+* -vi option; if nonzero, vi mode is always enabled and can be
+* accessed with the global_esc keysym + mod mask
+*/
+static unsigned int vi_mode = 1;
+static unsigned int start_mode = 0; /* mode to use when -vi is passed. 0 = insert mode, 1 = normal mode */
+static Key global_esc = { XK_n, Mod1Mask };	/* escape key when vi mode is not enabled explicitly */
+static Key quit_keys[] = {
+  /* keysym	modifier */
+  { XK_q,		0 }
+};
+
+/* Size of the window border */
+static unsigned int border_width = 0;
+
 /* Xresources preferences to load at startup */
 ResourcePref resources[] = {
   { "font", STRING, &font },
@@ -60,4 +79,6 @@ ResourcePref resources[] = {
   { "outfgcolor", STRING, &outfgcolor },
   { "outbgcolor", STRING, &outbgcolor },
   { "outhlcolor", STRING, &outhlcolor },
+  { "curbgcolor", STRING, &curbgcolor },
+  { "curhlcolor", STRING, &curhlcolor },
 };

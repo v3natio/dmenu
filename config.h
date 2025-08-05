@@ -23,6 +23,8 @@ static char selhlcolor[] = "#fabd2f";
 static char outfgcolor[] = "#000000";
 static char outbgcolor[] = "#00ffff";
 static char outhlcolor[] = "#ffc978";
+static char curbgcolor[] = "#00ffff";
+static char curhlcolor[] = "#ffc978";
 static char *colors[SchemeLast][2] = {
   /* foreground, background */
   [SchemeNorm] = { normfgcolor, normbgcolor },
@@ -31,6 +33,7 @@ static char *colors[SchemeLast][2] = {
   [SchemeSelHighlight] = { selhlcolor, selbgcolor },
   [SchemeOut] = { outfgcolor, outbgcolor },
   [SchemeOutHighlight] = { outhlcolor, outbgcolor },
+  [SchemeCursor] = { curhlcolor, curbgcolor},
 };
 
 static const unsigned int alphas[SchemeLast][2] = {
@@ -39,13 +42,28 @@ static const unsigned int alphas[SchemeLast][2] = {
 	[SchemeOut] = { OPAQUE, alpha },
 };
 /* -l option; if nonzero, dmenu uses vertical list with given number of lines */
-static unsigned int lines      = 0;
+static unsigned int lines = 0;
 
 /*
 * Characters not considered part of a word while deleting words
 * for example: " /?\"&[]"
 */
 static const char worddelimiters[] = " ";
+
+/*
+* -vi option; if nonzero, vi mode is always enabled and can be
+* accessed with the global_esc keysym + mod mask
+*/
+static unsigned int vi_mode = 1;
+static unsigned int start_mode = 1; // for local -vi: 1 for normal, 0 for insert
+static Key global_esc = { XK_Escape, 0 };	// escape func for global vi
+static Key quit_keys[] = {
+  /* keysym	modifier */
+  { XK_q,		0 }
+};
+
+/* Size of the window border */
+static unsigned int border_width = 5;
 
 /* Xresources preferences to load at startup */
 ResourcePref resources[] = {
@@ -60,4 +78,6 @@ ResourcePref resources[] = {
   { "outfgcolor", STRING, &outfgcolor },
   { "outbgcolor", STRING, &outbgcolor },
   { "outhlcolor", STRING, &outhlcolor },
+  { "color8", STRING, &curbgcolor },
+  { "color10", STRING, &curhlcolor },
 };
