@@ -1,4 +1,4 @@
-# Dynamic Menu ![dmenu](https://img.shields.io/static/v1?label=dmenu&message=5.3&color=blue&style=flat-square)
+# Dynamic Menu ![dmenu](https://img.shields.io/static/v1?label=dmenu&message=5.4&color=blue&style=flat-square)
 
 `dmenu` is a dynamic menu for X, originally designed for `dwm`. It manages large numbers of user-defined menu items efficiently.
 
